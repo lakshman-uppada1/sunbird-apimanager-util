@@ -61,6 +61,7 @@ public class KeyManager {
         String keyPrefix = environment.getProperty("refresh.token.public.keyprefix");
         String keyId = environment.getProperty("refresh.token.kid");
         String secretKey = environment.getProperty("refresh.token.secret.key");
+        log.info("Private key loaded - " + basePath + "keyPrefix::" + keyPrefix + "keyId::" + keyId + secretKey);
         keyMetadata.put("refresh.token.kid", keyId);
         keyMetadata.put("refresh.token.secret.key", secretKey);
         keyMetadata.put("refresh.token.domain", environment.getProperty("refresh.token.domain"));
