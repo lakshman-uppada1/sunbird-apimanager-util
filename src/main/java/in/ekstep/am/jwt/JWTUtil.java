@@ -1,11 +1,14 @@
 package in.ekstep.am.jwt;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.security.PrivateKey;
 import java.util.HashMap;
 import java.util.Map;
 
 public class JWTUtil {
-
+    private static final Logger log = LoggerFactory.getLogger(JWTUtil.class);
     private static String SEPARATOR = ".";
 
     public static String createHS256Token(String key, String secretKey, Map<String, String> headerOptions) {
@@ -67,9 +70,9 @@ public class JWTUtil {
         KeyData keyData;
         boolean isValid = false;
         keyData = keyManager.getValueFromKeyMap(keyId);
-        System.out.println("****************************** KEYDATA---keyid" + keyData.getKeyId());
-        System.out.println("****************************** KEYDATA---privatekey" + keyData.getPrivateKey());
-        System.out.println("****************************** KEYDATA---publickey" + keyData.getPublicKey());
+        log.info("****************************** KEYDATA---keyid" + keyData.getKeyId());
+        log.info("****************************** KEYDATA---privatekey" + keyData.getPrivateKey());
+        log.info("****************************** KEYDATA---publickey" + keyData.getPublicKey());
 
 
         if(keyData != null) {

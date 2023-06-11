@@ -33,7 +33,7 @@ public class ConsumerController {
   @RequestMapping(method = RequestMethod.POST, value = "/v1/consumer/{consumer_name}/credential/register",
           consumes = "application/json", produces = "application/json")
   public ResponseEntity<RegisterCredentialResponse> registerCredential(@Valid @PathVariable(value = "consumer_name") String userName, @Valid @RequestBody RegisterCredentialRequest request, BindingResult bindingResult) {
-    System.out.println("Inside Consumer Controller /v1/consumer/" +userName + "/credential/register");
+    log.info("Inside Consumer Controller /v1/consumer/" +userName + "/credential/register");
     RegisterCredentialResponseBuilder responseBuilder = new RegisterCredentialResponseBuilder();
     try {
       log.debug(format("GOT REQUEST TO REGISTER CREDENTIAL. REQUEST: {0}, USERNAME:{1}", request, userName));
