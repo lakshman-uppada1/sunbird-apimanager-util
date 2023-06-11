@@ -39,6 +39,7 @@ public class CreateCredentialWithKeyStep implements Step {
 
     if (AmAdminApi.NOT_FOUND.equals(response.code())) {
       log.error(format("CREDENTIAL DOES NOT EXISTS, USERNAME: {0}", userName));
+      System.out.println("Admin API Not Found");
       createCredential();
     }
   }
@@ -46,6 +47,7 @@ public class CreateCredentialWithKeyStep implements Step {
   private void createCredential() throws Exception {
     log.info(format("CREATE NEW CREDENTIALS FOR CONSUMER. USERNAME: {0}", userName));
     AmResponse createCredentialResponse = amAdminApi.createCredential(userName, key);
+
     if (AmAdminApi.CREATED.equals(createCredentialResponse.code())) {
       AmAdminApiCreateCredentialResponse amCreateCredentialResponse =
           new ObjectMapper().readValue(createCredentialResponse.body(), AmAdminApiCreateCredentialResponse.class);
