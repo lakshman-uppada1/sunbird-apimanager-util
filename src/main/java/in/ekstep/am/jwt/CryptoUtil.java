@@ -1,8 +1,5 @@
 package in.ekstep.am.jwt;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.Charset;
@@ -10,7 +7,7 @@ import java.security.*;
 
 public class CryptoUtil {
     private static final Charset US_ASCII = Charset.forName("US-ASCII");
-    private static final Logger log = LoggerFactory.getLogger(CryptoUtil.class);
+
     public static byte[] generateHMAC(String payLoad, String secretKey, String algorithm) {
         Mac mac;
         byte[] signature;
@@ -55,20 +52,17 @@ public class CryptoUtil {
         Signature sign;
         try {
             sign = Signature.getInstance(algorithm);
-           log.info("*****************SIGNATURE Algo *************" + sign.getAlgorithm());
-            log.info("*****************SIGNATURE Parameter Algo *************" + sign.getParameters().getAlgorithm());
-            log.info("********************  Signature Provider " + sign.getProvider().getName());
-            log.info("**********Public key inside verifyRSASign ****" + key);
-            log.info("**********Public key encoded inside verifyRSASign ****" + key.getEncoded());
-            log.info("**********Public key toString inside verifyRSASign ****" + key.toString());
-            log.info("**********Payload inside verifyRSASign ****" + payLoad);
+            System.out.println("*****************SIGNATURE Algo *************" + sign.getAlgorithm());
+            System.out.println("*****************SIGNATURE Parameter Algo *************" + sign.getParameters().getAlgorithm());
+            System.out.println("********************  Signature Provider " + sign.getProvider().getName());
+            System.out.println("**********Public key inside verifyRSASign ****" + key);
+            System.out.println("**********Public key encoded inside verifyRSASign ****" + key.getEncoded());
+            System.out.println("**********Public key toString inside verifyRSASign ****" + key.toString());
+            System.out.println("**********Payload inside verifyRSASign ****" + payLoad);
             sign.initVerify(key);
             sign.update(payLoad.getBytes(US_ASCII));
-            boolean valid = sign.verify(signature);
-            log.info("***************Signature Verification**************" + valid);
-            return valid;
+            return sign.verify(signature);
         } catch (NoSuchAlgorithmException | InvalidKeyException | SignatureException e) {
-            e.printStackTrace();
             return false;
         }
     }
