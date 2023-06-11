@@ -52,6 +52,13 @@ public class CryptoUtil {
         Signature sign;
         try {
             sign = Signature.getInstance(algorithm);
+            System.out.println("*****************SIGNATURE Algo *************" + sign.getAlgorithm());
+            System.out.println("*****************SIGNATURE Parameter Algo *************" + sign.getParameters().getAlgorithm());
+            System.out.println("********************  Signature Provider " + sign.getProvider().getName());
+            System.out.println("**********Public key inside verifyRSASign ****" + key);
+            System.out.println("**********Public key encoded inside verifyRSASign ****" + key.getEncoded());
+            System.out.println("**********Public key toString inside verifyRSASign ****" + key.toString());
+            System.out.println("**********Payload inside verifyRSASign ****" + payLoad);
             sign.initVerify(key);
             sign.update(payLoad.getBytes(US_ASCII));
             return sign.verify(signature);
