@@ -106,6 +106,7 @@ public class KeyManager {
         in.close();
 
         String publicKey = new String(keyBytes, "UTF-8");
+        log.info("**********PUBLIC KEY********************* " + publicKey);
         publicKey = publicKey
                 .replaceAll("(-+BEGIN RSA PUBLIC KEY-+\\r?\\n|-+END RSA PUBLIC KEY-+\\r?\\n?)", "")
                 .replaceAll("(-+BEGIN PUBLIC KEY-+\\r?\\n|-+END PUBLIC KEY-+\\r?\\n?)", "");
