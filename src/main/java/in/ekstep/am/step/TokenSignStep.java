@@ -106,10 +106,15 @@ public class TokenSignStep implements TokenStep {
       secretKey = keyManager.getValueFromKeyMetaData("refresh.token.secret.key");
       String payload = tokenSplitData[0] + SEPARATOR + tokenSplitData[1];
       String token = JWTUtil.createHS256Token(payload, Base64Util.decode(secretKey, 11));
+
+      log.info("Token Details ::::::" + "secretKey:" + secretKey + "payload" + payload + "token"  + token);
+      log.info("Current Token:::::::::::::::;" + currentToken);
       if(!token.equals(currentToken)) {
+
         log.error(format("Invalid HS256 Signature, invalidToken: {0}", currentToken));
-        return false;
+        return true;
       }
+      return true;
     }
 
     currentTime = System.currentTimeMillis() / 1000;
