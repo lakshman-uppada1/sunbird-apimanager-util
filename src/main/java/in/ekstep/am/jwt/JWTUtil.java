@@ -67,6 +67,11 @@ public class JWTUtil {
         KeyData keyData;
         boolean isValid = false;
         keyData = keyManager.getValueFromKeyMap(keyId);
+        System.out.println("****************************** KEYDATA---keyid" + keyData.getKeyId());
+        System.out.println("****************************** KEYDATA---privatekey" + keyData.getPrivateKey());
+        System.out.println("****************************** KEYDATA---publickey" + keyData.getPublicKey());
+
+
         if(keyData != null) {
             isValid = CryptoUtil.verifyRSASign(payLoad, decodeFromBase64(signature), keyData.getPublicKey(), "SHA256withRSA");
         }
